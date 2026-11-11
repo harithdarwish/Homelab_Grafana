@@ -14,9 +14,19 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8080']
 
-# Multiple machines grouped under one job:
-  - job_name: 'remote-nodes'
+# Multiple machines grouped under one job: Node-remotes
+  - job_name: 'node-remote'
     static_configs:
       - targets: 
           - '192.168.0.52:9100'
          # - '192.168.0.53:9100'
+
+# Multiple machines grouped under one job: cAdvisor-remotes
+  - job_name: 'docker-remote'
+    static_configs:
+      - targets: ['192.168.0.52:9095']
+        labels:
+          host: 'debian1-UptimeKuma'
+     # - targets: ['192.168.0.53:9095']
+     #   labels:
+     #    host: 'debian2-Server'
